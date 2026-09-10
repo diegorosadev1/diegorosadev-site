@@ -19,25 +19,19 @@ export const ProjectHero: React.FC = () => {
           <div className="lg:col-span-6 xl:col-span-6 space-y-4 sm:space-y-5">
             {/* Small Label */}
             <div className="inline-flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
-                Meus Projetos
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-blue-400">
+                PROJETOS
               </span>
             </div>
 
-            {/* Main Title with highlighted expression */}
+            {/* Main Title */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold text-white tracking-tight leading-[1.15]">
-              Projetos que{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent drop-shadow-sm">
-                geram resultados.
-              </span>
+              Projetos
             </h1>
 
             {/* Subtitle Description */}
-            <p className="text-sm sm:text-base text-slate-300/80 leading-relaxed max-w-xl">
-              Conheça alguns dos sites e landing pages que já desenvolvi.
-              Cada projeto foi pensado para atender às necessidades específicas
-              de cada cliente, com foco em performance, experiência do usuário
-              e conversão.
+            <p className="text-base sm:text-lg text-slate-300/90 leading-relaxed max-w-xl">
+              Projetos desenvolvidos para fortalecer marcas, gerar confiança e criar novas oportunidades.
             </p>
           </div>
 

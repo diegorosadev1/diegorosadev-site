@@ -53,6 +53,7 @@ export const AdminProjectForm: React.FC<AdminProjectFormProps> = ({
   const [displayOrder, setDisplayOrder] = useState<number>(1);
   const [published, setPublished] = useState<boolean>(true);
   const [featured, setFeatured] = useState<boolean>(false);
+  const [status, setStatus] = useState<'published' | 'in_development'>('published');
 
   // Images
   const [logoUrl, setLogoUrl] = useState('');
@@ -116,6 +117,7 @@ export const AdminProjectForm: React.FC<AdminProjectFormProps> = ({
             setDisplayOrder(project.displayOrder || 1);
             setPublished(project.published ?? true);
             setFeatured(project.featured ?? false);
+            setStatus(project.status || (project.published ? 'published' : 'in_development'));
 
             setLogoUrl(project.logoUrl || project.logo || '');
             setThumbnailUrl(project.thumbnailUrl || project.image || '');
@@ -296,6 +298,7 @@ export const AdminProjectForm: React.FC<AdminProjectFormProps> = ({
         displayOrder: Number(displayOrder),
         published,
         featured,
+        status,
         showContext,
         showProblems,
         showSolutions,
@@ -554,6 +557,18 @@ export const AdminProjectForm: React.FC<AdminProjectFormProps> = ({
               <span className="text-xs font-semibold text-amber-400 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
                 Destacar na Página Inicial (Home - limite 6)
+              </span>
+            </label>
+
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={status === 'published'}
+                onChange={(e) => setStatus(e.target.checked ? 'published' : 'in_development')}
+                className="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-0 cursor-pointer"
+              />
+              <span className="text-xs font-semibold text-emerald-400">
+                Site com domínio no ar (Visitar site →). Desmarcado: exibe &quot;Ver preview →&quot; e badge &quot;EM DESENVOLVIMENTO&quot;
               </span>
             </label>
           </div>

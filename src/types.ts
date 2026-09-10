@@ -66,6 +66,7 @@ export interface Project {
   heroDesktopUrl?: string;
   heroMobileUrl?: string;
   liveUrl: string;
+  url?: string;
   githubUrl?: string;
   techStack: TechItem[];
   context: {
@@ -89,6 +90,8 @@ export interface Project {
   published?: boolean;
   featured?: boolean;
   displayOrder?: number;
+  status?: 'published' | 'in_development';
+  isProfessionalExperience?: boolean;
   showContext?: boolean;
   showProblems?: boolean;
   showSolutions?: boolean;

@@ -2,7 +2,7 @@ import { ServiceItem } from '../types';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { SERVICES } from '../data/servicesAndProcess';
 
-const LOCAL_SERVICES_KEY = 'portfolio_services_store_v2';
+const LOCAL_SERVICES_KEY = 'portfolio_services_store_v3';
 
 const DEFAULT_SERVICES: ServiceItem[] = SERVICES.map((s, idx) => ({
   id: `srv-${idx + 1}`,

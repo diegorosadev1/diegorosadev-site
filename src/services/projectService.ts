@@ -2,7 +2,7 @@ import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { Project, TechItem, FeatureItem, ResultMetric, ProjectScreenshot } from '../types';
 import { PROJECTS as INITIAL_PROJECTS } from '../data/projects';
 
-const LOCAL_PROJECTS_KEY = 'diego_rosa_projects_store_v2';
+const LOCAL_PROJECTS_KEY = 'diego_rosa_projects_store_v4';
 
 // Helper to get local projects with fallback to initial seed
 const getLocalProjectsStore = (): Project[] => {
@@ -18,20 +18,21 @@ const getLocalProjectsStore = (): Project[] => {
   // Initialize with initial projects
   const initialized: Project[] = INITIAL_PROJECTS.map((p, index) => ({
     ...p,
-    published: true,
-    featured: index < 6, // First 6 are featured on Home
-    displayOrder: index + 1,
-    category: p.segment,
-    thumbnailUrl: p.image,
+    published: p.published !== undefined ? p.published : (p.status !== 'in_development'),
+    featured: p.featured !== undefined ? p.featured : (index < 6),
+    displayOrder: p.displayOrder ?? (index + 1),
+    status: p.status || (p.published === false ? 'in_development' : 'published'),
+    category: p.category || p.segment,
+    thumbnailUrl: p.thumbnailUrl || p.image,
     logoUrl: p.logo,
-    heroDesktopUrl: p.image,
-    heroMobileUrl: p.image,
+    heroDesktopUrl: p.heroDesktopUrl || p.image,
+    heroMobileUrl: p.heroMobileUrl || p.image,
     showContext: true,
     showProblems: true,
     showSolutions: true,
     showHighlights: true,
-    showResults: true,
-    showGallery: true,
+    showResults: Boolean(p.results && p.results.length > 0),
+    showGallery: false,
   }));
 
   localStorage.setItem(LOCAL_PROJECTS_KEY, JSON.stringify(initialized));
@@ -50,7 +51,7 @@ export const projectService = {
     if (!isSupabaseConfigured()) {
       const local = getLocalProjectsStore();
       return local
-        .filter((p) => p.published !== false)
+        .filter((p) => p.published !== false && p.status !== 'in_development')
         .sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
     }
 
@@ -73,12 +74,89 @@ export const projectService = {
 
       if (error || !data || data.length === 0) {
         // Graceful fallback to initial seed
-        return getLocalProjectsStore().filter((p) => p.published !== false);
+        return getLocalProjectsStore().filter((p) => p.published !== false && p.status !== 'in_development');
       }
 
       return data.map(this.mapSupabaseRowToProject);
     } catch {
-      return getLocalProjectsStore().filter((p) => p.published !== false);
+      return getLocalProjectsStore().filter((p) => p.published !== false && p.status !== 'in_development');
+    }
+  },
+
+  /**
+   * Fetch projects currently in development
+   */
+  async getInDevelopmentProjects(): Promise<Project[]> {
+    if (!isSupabaseConfigured()) {
+      const local = getLocalProjectsStore();
+      return local
+        .filter((p) => p.status === 'in_development' || p.published === false)
+        .sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .select(`
+          *,
+          project_problems (*),
+          project_solutions (*),
+          project_highlights (*),
+          project_results (*),
+          project_images (*),
+          project_technologies (
+            technologies (*)
+          )
+        `)
+        .eq('published', false)
+        .order('display_order', { ascending: true });
+
+      if (error || !data || data.length === 0) {
+        return getLocalProjectsStore()
+          .filter((p) => p.status === 'in_development' || p.published === false)
+          .sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+      }
+
+      return data.map(this.mapSupabaseRowToProject);
+    } catch {
+      return getLocalProjectsStore()
+        .filter((p) => p.status === 'in_development' || p.published === false)
+        .sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+    }
+  },
+
+  /**
+   * Fetch all portfolio projects configured to appear publicly (published and preview/in_development)
+   */
+  async getAllPortfolioProjects(): Promise<Project[]> {
+    if (!isSupabaseConfigured()) {
+      const local = getLocalProjectsStore();
+      return [...local].sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .select(`
+          *,
+          project_problems (*),
+          project_solutions (*),
+          project_highlights (*),
+          project_results (*),
+          project_images (*),
+          project_technologies (
+            technologies (*)
+          )
+        `)
+        .order('display_order', { ascending: true });
+
+      if (error || !data || data.length === 0) {
+        return [...getLocalProjectsStore()].sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+      }
+
+      return data.map(this.mapSupabaseRowToProject);
+    } catch {
+      return [...getLocalProjectsStore()].sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
     }
   },
 
@@ -89,7 +167,7 @@ export const projectService = {
     if (!isSupabaseConfigured()) {
       const local = getLocalProjectsStore();
       return local
-        .filter((p) => p.published !== false && p.featured === true)
+        .filter((p) => p.published !== false && p.featured === true && p.status !== 'in_development')
         .sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0))
         .slice(0, limit);
     }
@@ -116,14 +194,14 @@ export const projectService = {
       if (error || !data || data.length === 0) {
         const local = getLocalProjectsStore();
         return local
-          .filter((p) => p.published !== false && p.featured === true)
+          .filter((p) => p.published !== false && p.featured === true && p.status !== 'in_development')
           .slice(0, limit);
       }
 
       return data.map(this.mapSupabaseRowToProject);
     } catch {
       return getLocalProjectsStore()
-        .filter((p) => p.published !== false && p.featured === true)
+        .filter((p) => p.published !== false && p.featured === true && p.status !== 'in_development')
         .slice(0, limit);
     }
   },

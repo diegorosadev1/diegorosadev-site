@@ -23,13 +23,13 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onExploreProjects }) => {
           {/* Left Column: Heading & Text */}
           <div className="max-w-2xl">
             <span className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2.5 block">
-              Vamos conversar?
+              VAMOS CONVERSAR?
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4">
               Tem um projeto em mente?
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-slate-300/90 leading-relaxed font-normal">
-              Vamos transformar sua ideia em um site profissional, moderno e feito sob medida para o seu negócio.
+              Vamos transformar sua ideia em um site profissional, moderno e pensado para gerar resultados para o seu negócio.
             </p>
           </div>
 
@@ -43,7 +43,7 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({ onExploreProjects }) => {
               className="flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40 transition-all duration-200 group"
             >
               <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span>Falar no WhatsApp</span>
+              <span>Falar no WhatsApp →</span>
             </a>
 
             <button

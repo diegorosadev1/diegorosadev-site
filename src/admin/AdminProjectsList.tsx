@@ -272,10 +272,16 @@ export const AdminProjectsList: React.FC<AdminProjectsListProps> = ({ onNavigate
                     {/* Ações */}
                     <td className="py-3 px-4 text-right">
                       <div className="flex items-center justify-end gap-1">
-                        {/* View Public */}
+                        {/* View Public Site */}
                         <button
-                          onClick={() => onNavigate(`/projetos/${project.slug}`)}
-                          title="Visualizar página pública do projeto"
+                          onClick={() => {
+                            if (project.liveUrl) {
+                              window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+                            } else {
+                              onNavigate('/projetos');
+                            }
+                          }}
+                          title="Visitar site do projeto"
                           className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />

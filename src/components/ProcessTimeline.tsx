@@ -1,63 +1,164 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import {
+  MessageSquare,
+  FileText,
+  Code2,
+  Rocket,
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+  Heart,
+} from 'lucide-react';
 import { PROCESS_STEPS } from '../data/servicesAndProcess';
 
 export const ProcessTimeline: React.FC = () => {
+  const getStepVisuals = (index: number) => {
+    switch (index) {
+      case 0:
+        return {
+          icon: <MessageSquare className="w-5 h-5 text-white" />,
+          squircleClass:
+            'bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/25',
+          numberColor: 'text-blue-600',
+        };
+      case 1:
+        return {
+          icon: <FileText className="w-5 h-5 text-white" />,
+          squircleClass:
+            'bg-gradient-to-br from-purple-500 to-indigo-600 shadow-lg shadow-purple-500/25',
+          numberColor: 'text-purple-600',
+        };
+      case 2:
+        return {
+          icon: <Code2 className="w-5 h-5 text-white" />,
+          squircleClass:
+            'bg-gradient-to-br from-cyan-500 via-blue-500 to-indigo-600 shadow-lg shadow-cyan-500/25',
+          numberColor: 'text-blue-600',
+        };
+      case 3:
+      default:
+        return {
+          icon: <Rocket className="w-5 h-5 text-white" />,
+          squircleClass:
+            'bg-gradient-to-br from-purple-600 to-indigo-700 shadow-lg shadow-purple-600/25',
+          numberColor: 'text-purple-600',
+        };
+    }
+  };
+
   return (
     <section
       id="como-funciona"
       aria-label="Como funciona o processo de desenvolvimento"
-      className="w-full bg-[#f8fafc] text-slate-900 py-16 sm:py-20 relative overflow-hidden border-y border-slate-200"
+      className="w-full bg-[#f8fafc] text-slate-900 py-16 sm:py-24 relative overflow-hidden border-y border-slate-200/80"
     >
-      {/* Subtle geometric background accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-100/40 rounded-full blur-3xl pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Heading & Subtitle */}
-          <div className="lg:col-span-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 block">
-              Como funciona
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-              Do planejamento à entrega
+          {/* Left Column: Heading, Subtitle & Trust Badges */}
+          <div className="lg:col-span-4 flex flex-col items-start">
+            
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-8 h-[2.5px] bg-blue-600 rounded-full" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">
+                Como funciona
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h2 className="text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-black text-slate-950 tracking-tight leading-[1.15] mb-4">
+              <span className="whitespace-nowrap">Do planejamento à</span>{' '}
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+                entrega
+              </span>
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-              Um processo simples, transparente e focado no seu resultado.
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-sm mb-8 sm:mb-10">
+              Um processo simples, transparente e focado no resultado.
             </p>
+
+            {/* Trust Badges */}
+            <div className="flex flex-wrap items-center gap-6 sm:gap-7 pt-2">
+              
+              {/* Badge 1 */}
+              <div className="flex items-center gap-2.5">
+                <ShieldCheck className="w-5 h-5 text-blue-600 shrink-0" />
+                <div className="flex flex-col text-xs font-medium text-slate-700 leading-tight">
+                  <span>Comunicação</span>
+                  <span>constante</span>
+                </div>
+              </div>
+
+              {/* Badge 2 */}
+              <div className="flex items-center gap-2.5">
+                <Clock className="w-5 h-5 text-cyan-500 shrink-0" />
+                <div className="flex flex-col text-xs font-medium text-slate-700 leading-tight">
+                  <span>Prazos</span>
+                  <span>bem definidos</span>
+                </div>
+              </div>
+
+              {/* Badge 3 */}
+              <div className="flex items-center gap-2.5">
+                <Heart className="w-5 h-5 text-indigo-500 shrink-0" />
+                <div className="flex flex-col text-xs font-medium text-slate-700 leading-tight">
+                  <span>Seu projeto</span>
+                  <span>em boas mãos</span>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
-          {/* Right Column: 4 Steps Horizontal */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PROCESS_STEPS.map((step, index) => (
-              <div key={step.number} className="flex flex-col relative group">
-                
-                {/* Step number badge & arrow connector */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-full bg-[#0e1626] text-white font-bold text-sm flex items-center justify-center shadow-md group-hover:scale-105 group-hover:bg-blue-600 transition-all duration-300 shrink-0">
-                    {step.number}
-                  </div>
+          {/* Right Column: 4 Cards with Arrows */}
+          <div className="lg:col-span-8">
+            <div className="flex flex-col sm:flex-row flex-wrap xl:flex-nowrap items-center gap-3 sm:gap-2.5 lg:gap-3 justify-between">
+              {PROCESS_STEPS.map((step, index) => {
+                const visual = getStepVisuals(index);
 
-                  {/* Horizontal arrow to next step on desktop */}
-                  {index < PROCESS_STEPS.length - 1 && (
-                    <div className="hidden lg:flex items-center text-slate-400 pl-2 flex-1 justify-center">
-                      <ArrowRight className="w-4 h-4 text-slate-400" />
+                return (
+                  <React.Fragment key={step.number}>
+                    {/* Step Card */}
+                    <div className="bg-white rounded-3xl p-6 sm:p-6 lg:p-6 border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgba(59,130,246,0.08)] transition-all duration-300 flex flex-col justify-between flex-1 w-full sm:min-w-[180px] lg:min-w-[190px] min-h-[240px] group">
+                      
+                      {/* Top: Icon Squircle + Step Number */}
+                      <div className="flex items-center justify-between">
+                        <div
+                          className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform ${visual.squircleClass}`}
+                        >
+                          {visual.icon}
+                        </div>
+                        <span className={`text-base font-bold ${visual.numberColor}`}>
+                          {step.number}
+                        </span>
+                      </div>
+
+                      {/* Content: Title & Description */}
+                      <div className="mt-6">
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                          {step.title}
+                        </h3>
+                        <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal">
+                          {step.description}
+                        </p>
+                      </div>
+
                     </div>
-                  )}
-                </div>
 
-                {/* Step title & description */}
-                <h3 className="text-base font-bold text-slate-900 mb-1.5 group-hover:text-blue-600 transition-colors">
-                  {step.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {step.description}
-                </p>
-
-              </div>
-            ))}
+                    {/* Arrow between cards on large screens */}
+                    {index < PROCESS_STEPS.length - 1 && (
+                      <div className="hidden xl:flex items-center justify-center shrink-0 px-0.5">
+                        <ArrowRight className="w-5 h-5 text-indigo-400" />
+                      </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
           </div>
 
         </div>

@@ -35,15 +35,15 @@ export const SERVICES: ServiceItem[] = [
     id: 'landing-pages',
     title: 'Landing Pages',
     description:
-      'Páginas estratégicas para campanhas, serviços e produtos, com foco em experiência e conversão.',
+      'Páginas estratégicas para campanhas, serviços e produtos, com foco em experiência, geração de leads e conversão.',
     icon: 'Zap',
   },
   {
-    id: 'sistemas',
-    title: 'Sistemas Web',
+    id: 'seo',
+    title: 'SEO e Visibilidade',
     description:
-      'Aplicações web personalizadas para necessidades específicas, integrações e processos do negócio.',
-    icon: 'Code2',
+      'Estrutura preparada para mecanismos de busca, ajudando sua empresa a ser encontrada por quem procura pelo que você oferece.',
+    icon: 'Search',
   },
   {
     id: 'suporte',
@@ -58,7 +58,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     number: '01',
     title: 'Conversa',
-    description: 'Entendo seu negócio, objetivo e o que você precisa.',
+    description: 'Entendo seu negócio, objetivos e o que você precisa.',
   },
   {
     number: '02',
@@ -68,7 +68,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     number: '03',
     title: 'Desenvolvimento',
-    description: 'Construo o site e apresento as versões para aprovação.',
+    description: 'Transformo o planejamento em um site rápido, responsivo e profissional.',
   },
   {
     number: '04',
@@ -80,51 +80,35 @@ export const PROCESS_STEPS: ProcessStep[] = [
 export const DIFFERENTIALS: DifferentialItem[] = [
   {
     number: '01',
-    title: 'Desenvolvimento Full Stack',
+    title: 'Estratégia que gera resultado',
     description:
-      'Aplicações modernas, escaláveis e seguras. Do frontend ao backend, com tecnologias de ponta.',
-    icon: 'Code2',
+      'Cada página é pensada para apresentar seu negócio com clareza e conduzir o visitante até o próximo passo.',
+    icon: 'Rocket',
     color: 'blue',
   },
   {
     number: '02',
-    title: 'Performance e Otimização',
+    title: 'Performance de verdade',
     description:
-      'Sites e aplicações mais rápidos, com melhor experiência e alta performance.',
+      'Sites rápidos, leves e otimizados para oferecer uma experiência melhor em qualquer dispositivo.',
     icon: 'Zap',
     color: 'purple',
   },
   {
     number: '03',
-    title: 'Infraestrutura e Cloud',
+    title: 'SEO e visibilidade',
     description:
-      'Implantação e manutenção em ambientes modernos, com foco em estabilidade e segurança.',
-    icon: 'Cloud',
+      'Estrutura preparada para SEO, ajudando sua empresa a ser encontrada por quem procura pelo que você oferece.',
+    icon: 'Search',
     color: 'sky',
   },
   {
     number: '04',
-    title: 'SEO e Visibilidade',
+    title: 'Feito para o seu negócio',
     description:
-      'Estruturas otimizadas para motores de busca, com foco em tráfego qualificado e crescimento.',
-    icon: 'Search',
+      'Design, conteúdo e funcionalidades personalizados para representar sua empresa e atender seus objetivos.',
+    icon: 'Code2',
     color: 'teal',
-  },
-  {
-    number: '05',
-    title: 'Design e UX',
-    description:
-      'Interfaces intuitivas, responsivas e pensadas para gerar engajamento e conversão.',
-    icon: 'Smartphone',
-    color: 'violet',
-  },
-  {
-    number: '06',
-    title: 'Suporte e Manutenção',
-    description:
-      'Acompanhamento contínuo, monitoramento e atualizações para o seu projeto sempre no ar.',
-    icon: 'Shield',
-    color: 'blue',
   },
 ];
 

@@ -25,7 +25,7 @@ export const FloatingWhatsApp: React.FC = () => {
       {/* Tooltip prompt */}
       {!tooltipDismissed && (
         <div className="hidden sm:flex items-center gap-2 bg-[#0c1222]/95 border border-slate-700/90 text-slate-200 text-xs py-2 px-3.5 rounded-xl shadow-xl backdrop-blur-md">
-          <span>Olá! Vamos conversar sobre seu site?</span>
+          <span>Olá! Vamos conversar sobre seu projeto?</span>
           <button
             onClick={() => setTooltipDismissed(true)}
             className="text-slate-400 hover:text-white p-0.5"

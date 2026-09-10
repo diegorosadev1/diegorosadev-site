@@ -50,12 +50,51 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           onClick={() => handleLinkClick('/', 'inicio')}
           className="flex items-center gap-3 group focus:outline-none text-left cursor-pointer"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center font-bold text-white tracking-wider text-base shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
-            DR
+          <div className="relative flex items-center justify-center group-hover:scale-105 transition-transform">
+            <svg
+              className="w-8 h-8 sm:w-9 sm:h-9 drop-shadow-[0_0_12px_rgba(56,189,248,0.5)]"
+              viewBox="0 0 36 36"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Left bracket < */}
+              <path
+                d="M12 11L4 18L12 25"
+                stroke="url(#nav-code-grad)"
+                strokeWidth="3.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* Slash / */}
+              <path
+                d="M16 26L20 10"
+                stroke="url(#nav-code-grad)"
+                strokeWidth="3.2"
+                strokeLinecap="round"
+              />
+              {/* Right bracket > */}
+              <path
+                d="M24 11L32 18L24 25"
+                stroke="url(#nav-code-grad)"
+                strokeWidth="3.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <defs>
+                <linearGradient id="nav-code-grad" x1="4" y1="10" x2="32" y2="26" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#38bdf8" />
+                  <stop offset="0.55" stopColor="#6366f1" />
+                  <stop offset="1" stopColor="#a855f7" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-semibold text-base tracking-tight group-hover:text-blue-400 transition-colors">
+            <span className="text-white font-extrabold text-sm sm:text-base tracking-[0.08em] uppercase group-hover:text-blue-300 transition-colors leading-tight">
               Diego Rosa
+            </span>
+            <span className="text-[10px] font-semibold text-slate-400 tracking-[0.2em] uppercase leading-tight mt-0.5">
+              Engenheiro de Software
             </span>
           </div>
         </button>

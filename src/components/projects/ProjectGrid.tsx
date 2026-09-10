@@ -1,19 +1,34 @@
 import React from 'react';
 import { Project } from '../../types';
 import { ProjectCard } from './ProjectCard';
+import { ProjectCardSkeleton } from './ProjectCardSkeleton';
 import { SearchX, RotateCcw } from 'lucide-react';
 
 export interface ProjectGridProps {
   projects: Project[];
-  onSelectProject: (slug: string) => void;
+  isLoading?: boolean;
+  skeletonCount?: number;
+  onSelectProject?: (slug: string) => void;
   onResetFilters?: () => void;
 }
 
 export const ProjectGrid: React.FC<ProjectGridProps> = ({
   projects,
+  isLoading,
+  skeletonCount = 6,
   onSelectProject,
   onResetFilters,
 }) => {
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        {Array.from({ length: skeletonCount }).map((_, i) => (
+          <ProjectCardSkeleton key={`skeleton-grid-${i}`} variant="catalog" />
+        ))}
+      </div>
+    );
+  }
+
   if (projects.length === 0) {
     return (
       <div
@@ -46,19 +61,21 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({
   return (
     <div
       id="projects-grid"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 animate-fadeIn"
     >
       {projects.map((project) => (
         <ProjectCard
           key={project.id || project.slug}
           title={project.name}
-          category={project.segment}
+          category={project.category || project.segment}
           description={project.shortDescription}
           image={project.image}
-          technologies={project.techStack || []}
+          technologies={project.techStack || project.technologies || []}
           slug={project.slug}
-          externalUrl={project.liveUrl}
-          logo={project.logo}
+          externalUrl={project.liveUrl || project.url}
+          logo={project.logo || project.logoUrl}
+          status={project.status || (project.published === false ? 'in_development' : 'published')}
+          isProfessionalExperience={project.isProfessionalExperience}
           onSelectProject={onSelectProject}
         />
       ))}

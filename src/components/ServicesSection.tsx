@@ -2,15 +2,15 @@ import React from 'react';
 import {
   Globe,
   Zap,
-  Code2,
+  Search,
   Wrench,
   Layers,
   PenTool,
   ShieldCheck,
   ArrowRight,
-  Cloud,
   Shield,
   Image as ImageIcon,
+  Code2,
 } from 'lucide-react';
 import { SERVICES } from '../data/servicesAndProcess';
 
@@ -72,7 +72,7 @@ export const ServicesSection: React.FC = () => {
       case 1:
         return <Zap className={`w-6 h-6 ${accentColor}`} />;
       case 2:
-        return <Code2 className={`w-6 h-6 ${accentColor}`} />;
+        return <Search className={`w-6 h-6 ${accentColor}`} />;
       case 3:
       default:
         return <Wrench className={`w-6 h-6 ${accentColor}`} />;
@@ -124,7 +124,7 @@ export const ServicesSection: React.FC = () => {
           </div>
         );
       case 2:
-        // Mockup 3: Sistemas & Produtos Digitais
+        // Mockup 3: SEO e Visibilidade
         return (
           <div className="w-28 h-20 rounded-xl bg-[#06181b] border border-teal-500/30 p-2 shadow-lg relative overflow-hidden group-hover:border-teal-400/50 transition-colors">
             {/* Header dots */}
@@ -135,22 +135,22 @@ export const ServicesSection: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/70" />
               </div>
             </div>
-            {/* Code lines */}
+            {/* Search query & rank bars */}
             <div className="space-y-1 pl-1">
               <div className="flex gap-1 items-center">
                 <span className="w-3 h-1 rounded bg-teal-400/60" />
-                <span className="w-6 h-1 rounded bg-emerald-400/60" />
+                <span className="w-8 h-1 rounded bg-emerald-400/60" />
               </div>
               <div className="flex gap-1 items-center pl-2">
-                <span className="w-8 h-1 rounded bg-cyan-400/50" />
+                <span className="w-9 h-1 rounded bg-cyan-400/50" />
               </div>
-              <div className="flex gap-1 items-center pl-4">
-                <span className="w-5 h-1 rounded bg-teal-300/40" />
+              <div className="flex gap-1 items-center pl-2">
+                <span className="w-6 h-1 rounded bg-teal-300/40" />
               </div>
             </div>
-            {/* Floating cloud badge */}
+            {/* Floating Search badge */}
             <div className="absolute -bottom-1 -right-1 w-9 h-8 rounded-lg bg-teal-950/90 border border-teal-400/50 flex items-center justify-center shadow-[0_0_12px_rgba(45,212,191,0.3)]">
-              <Cloud className="w-4 h-4 text-[#2dd4bf]" />
+              <Search className="w-4 h-4 text-[#2dd4bf]" />
             </div>
           </div>
         );
@@ -211,14 +211,14 @@ export const ServicesSection: React.FC = () => {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-extrabold text-white tracking-tight leading-[1.15] mb-4">
-              Soluções digitais para o <br />
+              Sites pensados para o <br />
               <span className="bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] bg-clip-text text-transparent">
                 seu negócio.
               </span>
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300/85 leading-relaxed max-w-xl">
-              Desenvolvo projetos personalizados, alinhados aos objetivos da sua empresa e com foco em resultados reais.
+              Desenvolvo sites profissionais pensados para fortalecer sua marca, gerar confiança e transformar visitantes em oportunidades.
             </p>
           </div>
 
@@ -230,7 +230,7 @@ export const ServicesSection: React.FC = () => {
                 <Layers className="w-4 h-4" />
               </div>
               <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed">
-                Da ideia ao produto final, eu cuido de todo o processo — do planejamento à entrega, com código limpo, boas práticas e foco na performance.
+                Da ideia à publicação, cuido de todo o processo para entregar um site profissional, rápido e preparado para o seu negócio.
               </p>
             </div>
 
@@ -254,7 +254,7 @@ export const ServicesSection: React.FC = () => {
                 <div className="w-5 h-5 rounded bg-blue-950/60 border border-blue-500/40 flex items-center justify-center text-[#38bdf8] shrink-0">
                   <Zap className="w-3 h-3" />
                 </div>
-                <span className="leading-tight">Performance & Escalabilidade</span>
+                <span className="leading-tight">Performance</span>
               </div>
 
               <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#0a1124]/70 border border-slate-800 text-[11px] text-slate-300">

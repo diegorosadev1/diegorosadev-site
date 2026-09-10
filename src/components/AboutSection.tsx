@@ -3,12 +3,10 @@ import {
   Briefcase,
   Rocket,
   Users,
-  TrendingUp,
   Crosshair,
   ArrowRight,
   Code2,
   Database,
-  Cloud,
 } from 'lucide-react';
 import { WHATSAPP_URL } from '../data/servicesAndProcess';
 import { SiteAboutContent } from '../types';
@@ -20,17 +18,26 @@ interface AboutSectionProps {
 export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
   const label = content?.label || 'Sobre mim';
   const title = content?.title || 'Prazer, sou o Diego.';
+  const defaultP1 =
+    'Desenvolvo sites profissionais que fortalecem sua marca, geram confiança e transformam visitantes em oportunidades.';
+  const defaultP2 =
+    'Meu trabalho combina design, performance, SEO e tecnologia para criar experiências digitais profissionais, rápidas e pensadas para o seu negócio.';
+
   const p1 =
-    content?.paragraph1 ||
-    'Trabalho com desenvolvimento de aplicações web, sites, plataformas e sistemas, unindo engenharia, performance, design e estratégia para entregar produtos que realmente fazem a diferença.';
+    content?.paragraph1 &&
+    !content.paragraph1.includes('Trabalho com desenvolvimento de sites e experiências digitais, unindo')
+      ? content.paragraph1
+      : defaultP1;
   const p2 =
-    content?.paragraph2 ||
-    'Meu foco é transformar ideias em soluções digitais bem estruturadas, escaláveis e centradas no usuário, com o objetivo de gerar valor real para o negócio.';
+    content?.paragraph2 &&
+    !content.paragraph2.includes('Meu foco é transformar ideias em soluções digitais bem estruturadas')
+      ? content.paragraph2
+      : defaultP2;
   const photo = content?.photoUrl || '/images/diego-rosa.jpg';
-  const exp = content?.experienceYears || '5+ anos';
+  const expRaw = content?.experienceYears || '5+';
+  const exp = expRaw.replace(/anos/gi, '').trim() || '5+';
   const projectsCount = content?.projectsCount || '10+';
   const segments = content?.segmentsCount || '5+';
-  const focus = content?.focusText || '100%';
 
   return (
     <section
@@ -74,7 +81,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
                   }}
                 >
                   <img
-                    src={photo}
+                    src={"https://media.licdn.com/dms/image/v2/D4D03AQGkog7BTbBiGw/profile-displayphoto-scale_400_400/B4DZ5bQwCBHAAg-/0/1779647580925?e=1790812800&v=beta&t=KMlLiAGXMkJrqVDN8vIcbCeW0a7-M2gfTJFXKlNZoFU"}
                     alt="Diego Rosa - Engenheiro de Software"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
@@ -92,7 +99,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
                         Engenheiro de Software
                       </div>
                       <div className="text-[11px] text-slate-400 font-medium">
-                        Full Stack
+                        Sites profissionais
                       </div>
                     </div>
                   </div>
@@ -156,10 +163,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
                 <Database className="w-3.5 h-3.5 text-sky-400" />
                 <span>PostgreSQL</span>
               </div>
-              {/* Cloud */}
+              {/* Vercel */}
               <div className="flex items-center gap-1.5 text-xs text-slate-200 font-medium">
-                <Cloud className="w-3.5 h-3.5 text-blue-400" />
-                <span>Cloud</span>
+                <svg className="w-3 h-3 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 1L24 22H0L12 1Z" />
+                </svg>
+                <span>Vercel</span>
               </div>
             </div>
 
@@ -167,10 +176,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
 
           </div>
 
-          {/* Coluna 3: 4 Cards de Estatísticas Verticais */}
-          <div className="lg:col-span-3 flex flex-col gap-3.5">
+          {/* Coluna 3: Cards de Estatísticas Fatuais */}
+          <div className="lg:col-span-3 flex flex-col gap-3.5 sm:gap-4">
             
-            {/* Card 1: 5+ anos */}
+            {/* Card 1: 5+ anos trabalhando com tecnologia */}
             <div className="p-4 sm:p-4.5 rounded-2xl bg-[#070e22]/80 backdrop-blur-sm border border-slate-800/85 hover:border-blue-500/50 transition-all duration-300 flex items-center gap-3.5 hover:-translate-y-0.5 shadow-sm">
               <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-gradient-to-br from-blue-500/25 to-blue-950/50 border border-blue-400/40 text-[#38bdf8] shadow-[0_0_18px_rgba(56,189,248,0.25)]">
                 <Briefcase className="w-5 h-5" />
@@ -180,12 +189,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
                   {exp}
                 </div>
                 <div className="text-[11px] sm:text-xs text-slate-400 leading-snug mt-0.5">
-                  de experiência em desenvolvimento de software
+                  anos trabalhando com tecnologia
                 </div>
               </div>
             </div>
 
-            {/* Card 2: 10+ projetos */}
+            {/* Card 2: 10+ projetos entregues */}
             <div className="p-4 sm:p-4.5 rounded-2xl bg-[#070e22]/80 backdrop-blur-sm border border-slate-800/85 hover:border-purple-500/50 transition-all duration-300 flex items-center gap-3.5 hover:-translate-y-0.5 shadow-sm">
               <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-gradient-to-br from-purple-500/25 to-purple-950/50 border border-purple-400/40 text-[#c084fc] shadow-[0_0_18px_rgba(192,132,252,0.25)]">
                 <Rocket className="w-5 h-5" />
@@ -195,12 +204,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
                   {projectsCount}
                 </div>
                 <div className="text-[11px] sm:text-xs text-slate-400 leading-snug mt-0.5">
-                  projetos entregues com sucesso
+                  projetos entregues
                 </div>
               </div>
             </div>
 
-            {/* Card 3: 5+ segmentos */}
+            {/* Card 3: 5+ segmentos atendidos */}
             <div className="p-4 sm:p-4.5 rounded-2xl bg-[#070e22]/80 backdrop-blur-sm border border-slate-800/85 hover:border-teal-500/50 transition-all duration-300 flex items-center gap-3.5 hover:-translate-y-0.5 shadow-sm">
               <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-gradient-to-br from-teal-500/25 to-teal-950/50 border border-teal-400/40 text-[#2dd4bf] shadow-[0_0_18px_rgba(45,212,191,0.25)]">
                 <Users className="w-5 h-5" />
@@ -210,22 +219,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
                   {segments}
                 </div>
                 <div className="text-[11px] sm:text-xs text-slate-400 leading-snug mt-0.5">
-                  segmentos atendidos (tech, varejo, educação, saúde, etc.)
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4: 100% foco */}
-            <div className="p-4 sm:p-4.5 rounded-2xl bg-[#070e22]/80 backdrop-blur-sm border border-slate-800/85 hover:border-blue-500/50 transition-all duration-300 flex items-center gap-3.5 hover:-translate-y-0.5 shadow-sm">
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-gradient-to-br from-blue-600/25 to-blue-950/50 border border-blue-400/40 text-[#60a5fa] shadow-[0_0_18px_rgba(96,165,250,0.25)]">
-                <TrendingUp className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-base sm:text-lg font-extrabold text-white tracking-tight">
-                  {focus}
-                </div>
-                <div className="text-[11px] sm:text-xs text-slate-400 leading-snug mt-0.5">
-                  foco em performance e resultado
+                  segmentos atendidos
                 </div>
               </div>
             </div>
@@ -255,7 +249,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
             className="group flex items-center gap-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-[#38bdf8] hover:text-white transition-colors"
           >
             <span className="w-8 sm:w-12 h-[1px] bg-[#38bdf8]/60 group-hover:w-16 transition-all duration-300" />
-            <span>VAMOS CONSTRUIR ALGO INCRÍVEL?</span>
+            <span>VAMOS CONSTRUIR ALGO INCRÍVEL</span>
             <ArrowRight className="w-4 h-4 text-[#38bdf8] group-hover:translate-x-1.5 transition-transform" />
           </a>
 

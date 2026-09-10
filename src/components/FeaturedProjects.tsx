@@ -1,93 +1,115 @@
 import React from 'react';
 import {
   ArrowRight,
+  ExternalLink,
   Car,
+  Dumbbell,
+  Building2,
+  Navigation,
   LayoutGrid,
-  Zap,
-  Users,
   Cloud,
+  RotateCcw,
+  AlertCircle,
 } from 'lucide-react';
 import { Project } from '../types';
 import { useFeaturedProjects } from '../hooks/useFeaturedProjects';
+import { ProjectCardSkeleton } from './projects/ProjectCardSkeleton';
 
 interface FeaturedProjectsProps {
   projects?: Project[];
-  onSelectProject: (slug: string) => void;
+  onSelectProject?: (slug: string) => void;
   onViewAllProjects?: () => void;
 }
 
 export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
   projects: propProjects,
-  onSelectProject,
   onViewAllProjects,
 }) => {
-  const { projects: hookProjects, isLoading } = useFeaturedProjects(6);
+  const { projects: hookProjects, isLoading, error, refetch } = useFeaturedProjects(6);
   const featuredProjects =
     propProjects && propProjects.length > 0 ? propProjects.slice(0, 6) : hookProjects;
 
-  const getCardConfig = (slug: string, index: number) => {
+  const getCardConfig = (slug: string, project: Project) => {
     switch (slug) {
+      case 'synvia':
+        return {
+          categoryLabel: 'SITE INSTITUCIONAL',
+          categoryIcon: <Building2 className="w-3 h-3 text-[#38bdf8]" />,
+          isProfessional: true,
+          categoryBadgeClass:
+            'bg-[#050b18]/90 border-blue-400/50 text-blue-300 shadow-[0_0_15px_rgba(56,189,248,0.25)]',
+          cardBorderClass:
+            'border-blue-500/40 hover:border-blue-400 shadow-[0_0_24px_rgba(56,189,248,0.12)]',
+          techs: ['React', 'TypeScript', 'Tailwind', 'Vite'],
+        };
       case 'auto-shopping':
         return {
           categoryLabel: 'WEBSITE',
           categoryIcon: <Car className="w-3 h-3 text-[#38bdf8]" />,
+          isProfessional: false,
           categoryBadgeClass:
             'bg-[#050b18]/90 border-blue-400/50 text-blue-300 shadow-[0_0_15px_rgba(56,189,248,0.25)]',
           cardBorderClass:
             'border-blue-500/40 hover:border-blue-400 shadow-[0_0_24px_rgba(56,189,248,0.12)]',
           techs: ['React', 'TypeScript', 'Vite', 'Supabase'],
         };
-      case 'mohave-motors':
-        return {
-          categoryLabel: 'LANDING PAGE',
-          categoryIcon: <Car className="w-3 h-3 text-sky-400" />,
-          categoryBadgeClass:
-            'bg-[#090e1c]/90 border-sky-400/40 text-sky-300 shadow-[0_0_15px_rgba(56,189,248,0.2)]',
-          cardBorderClass:
-            'border-slate-700/80 hover:border-sky-400/60 shadow-[0_0_24px_rgba(56,189,248,0.08)]',
-          techs: ['React', 'TypeScript', 'Vite', 'Tailwind'],
-        };
       case 'canaa-motors':
         return {
-          categoryLabel: 'PLATAFORMA',
-          categoryIcon: <LayoutGrid className="w-3 h-3 text-amber-400" />,
+          categoryLabel: 'WEBSITE',
+          categoryIcon: <Car className="w-3 h-3 text-amber-400" />,
+          isProfessional: false,
           categoryBadgeClass:
             'bg-[#181105]/90 border-amber-400/50 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.25)]',
           cardBorderClass:
             'border-amber-500/45 hover:border-amber-400 shadow-[0_0_24px_rgba(245,158,11,0.15)]',
-          techs: ['React', 'TypeScript', 'Vite', 'Supabase'],
+          techs: ['React', 'TypeScript', 'Vite', 'Tailwind'],
         };
-      case 'bruno-fitness':
+      case 'avance-motors':
         return {
-          categoryLabel: 'LANDING PAGE',
-          categoryIcon: <Zap className="w-3 h-3 text-yellow-400 fill-yellow-400/20" />,
+          categoryLabel: 'WEBSITE',
+          categoryIcon: <Car className="w-3 h-3 text-cyan-400" />,
+          isProfessional: false,
           categoryBadgeClass:
-            'bg-[#181504]/90 border-yellow-400/50 text-yellow-300 shadow-[0_0_15px_rgba(234,179,8,0.25)]',
+            'bg-[#04141d]/90 border-cyan-400/50 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.25)]',
           cardBorderClass:
-            'border-yellow-400/50 hover:border-yellow-300 shadow-[0_0_24px_rgba(234,179,8,0.18)]',
-          techs: ['React', 'TypeScript', 'Tailwind', 'Supabase'],
+            'border-cyan-500/40 hover:border-cyan-400 shadow-[0_0_24px_rgba(6,182,212,0.12)]',
+          techs: ['React', 'TypeScript', 'Vite', 'Tailwind'],
         };
       case 'team-bg':
         return {
           categoryLabel: 'LANDING PAGE',
-          categoryIcon: <Users className="w-3 h-3 text-blue-400" />,
+          categoryIcon: <Dumbbell className="w-3 h-3 text-blue-400" />,
+          isProfessional: false,
           categoryBadgeClass:
             'bg-[#060e22]/90 border-blue-400/50 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.25)]',
           cardBorderClass:
             'border-blue-500/45 hover:border-blue-400 shadow-[0_0_24px_rgba(59,130,246,0.15)]',
-          techs: ['React', 'TypeScript', 'Vite', 'Supabase'],
+          techs: ['React', 'TypeScript', 'Vite', 'Tailwind'],
         };
       case 'gotracker':
-      default:
         return {
-          categoryLabel: 'SAAS',
-          categoryIcon: <Cloud className="w-3 h-3 text-purple-400" />,
+          categoryLabel: 'LANDING PAGE',
+          categoryIcon: <Navigation className="w-3 h-3 text-purple-400" />,
+          isProfessional: false,
           categoryBadgeClass:
             'bg-[#140822]/90 border-purple-400/50 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.25)]',
           cardBorderClass:
             'border-purple-500/45 hover:border-purple-400 shadow-[0_0_24px_rgba(168,85,247,0.16)]',
-          techs: ['React', 'TypeScript', 'Tailwind', 'Supabase'],
+          techs: ['React', 'TypeScript', 'Tailwind', 'Vite'],
         };
+      default: {
+        const cat = (project.segment || project.category || 'WEBSITE').toUpperCase();
+        return {
+          categoryLabel: cat,
+          categoryIcon: <LayoutGrid className="w-3 h-3 text-[#38bdf8]" />,
+          isProfessional: Boolean(project.isProfessionalExperience),
+          categoryBadgeClass:
+            'bg-[#050b18]/90 border-blue-400/50 text-blue-300 shadow-[0_0_15px_rgba(56,189,248,0.25)]',
+          cardBorderClass:
+            'border-slate-800 hover:border-blue-400/60 shadow-[0_0_24px_rgba(56,189,248,0.1)]',
+          techs: (project.techStack || []).map((t) => t.name).slice(0, 4),
+        };
+      }
     }
   };
 
@@ -108,101 +130,98 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
         );
       case 'Vite':
         return (
-          <svg className="w-3 h-3 text-[#a855f7]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13.5 2L3 14h7v8l10.5-12h-7l3-8z" />
-          </svg>
-        );
-      case 'Tailwind':
-        return (
-          <svg className="w-3 h-3 text-[#38bdf8]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 6c-3.3 0-5.3 1.7-6 5 1.3-1.7 2.9-2.3 4.7-1.7.9.3 1.6 1 2.3 1.7C14.2 12.2 15.6 13.5 19 13.5c3.3 0 5.3-1.7 6-5-1.3 1.7-2.9 2.3-4.7 1.7-.9-.3-1.6-1-2.3-1.7C16.8 7.3 15.4 6 12 6zM5 13.5c-3.3 0-5.3 1.7-6 5 1.3-1.7 2.9-2.3 4.7-1.7.9.3 1.6 1 2.3 1.7 1.2 1.2 2.6 2.5 6 2.5 3.3 0 5.3-1.7 6-5-1.3 1.7-2.9 2.3-4.7 1.7-.9-.3-1.6-1-2.3-1.7-1.2-1.2-2.6-2.5-6-2.5z" />
-          </svg>
+          <span className="text-yellow-400 text-[10px] leading-none">⚡</span>
         );
       case 'Supabase':
         return (
-          <svg className="w-3 h-3 text-[#3ecf8e]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21.362 9.354H12V.3a.3.3 0 0 0-.535-.205L.235 13.626a.3.3 0 0 0 .23.498H12v9.576a.3.3 0 0 0 .535.205l11.23-13.531a.3.3 0 0 0-.23-.498z" />
-          </svg>
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block" />
+        );
+      case 'Tailwind':
+      case 'Tailwind CSS':
+        return (
+          <span className="text-[#38bdf8] text-[10px] font-bold leading-none">≈</span>
         );
       default:
-        return <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />;
+        return <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />;
     }
   };
 
   return (
-    <section id="projetos" className="py-20 sm:py-28 relative overflow-hidden">
-      {/* Luzes ambientes de fundo */}
-      <div className="absolute -top-24 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/2 -right-40 w-[450px] h-[450px] bg-cyan-600/8 rounded-full blur-[140px] pointer-events-none" />
+    <section
+      id="projetos"
+      className="relative py-20 sm:py-28 bg-[#040711] overflow-hidden"
+    >
+      {/* Background Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-[300px] h-[300px] bg-sky-500/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header Superior: 2 Colunas */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-14 sm:mb-16">
-          
-          {/* Lado Esquerdo */}
-          <div className="lg:col-span-7">
-            <div className="flex items-center gap-2.5 mb-3.5">
-              <span className="w-6 h-[2px] bg-[#38bdf8] rounded-full inline-block" />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#38bdf8]">
-                MEUS PROJETOS
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-extrabold text-white tracking-tight leading-[1.15] mb-4">
-              Projetos em{' '}
-              <span className="bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#818cf8] bg-clip-text text-transparent">
-                destaque.
-              </span>
-            </h2>
-
-            <p className="text-sm sm:text-base text-slate-300/85 leading-relaxed max-w-xl">
-              Alguns dos projetos que desenvolvi e que melhor representam minha experiência, habilidades e o tipo de solução que entrego.
-            </p>
+        {/* Cabeçalho da Seção */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          {/* Tag Pill com Ponto Pulsante */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#081026] border border-blue-500/30 text-xs font-semibold text-[#38bdf8] mb-4 shadow-[0_0_20px_rgba(56,189,248,0.15)]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38bdf8] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#38bdf8]" />
+            </span>
+            <span>PORTFÓLIO SELECIONADO</span>
           </div>
 
-          {/* Lado Direito (com divisor vertical em desktop) */}
-          <div className="lg:col-span-5 lg:border-l lg:border-cyan-500/30 lg:pl-10 space-y-4">
-            <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed">
-              Cada projeto foi pensado para atender às necessidades específicas de cada cliente, com foco em performance, experiência do usuário e resultados reais.
-            </p>
+          {/* Título Principal */}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+            Projetos em{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] via-blue-400 to-indigo-300">
+              destaque
+            </span>
+          </h2>
 
-            <div>
-              <a
-                href="/projetos"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (onViewAllProjects) {
-                    onViewAllProjects();
-                  } else {
-                    document.getElementById('projetos')?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#38bdf8] hover:text-white transition-colors group cursor-pointer"
-              >
-                <span>Ver todos os projetos</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-          </div>
-
+          {/* Texto descritivo solicitado pelo usuário */}
+          <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto">
+            Conheça alguns dos projetos que já desenvolvi para diferentes negócios. Cada site foi pensado para fortalecer a marca, melhorar a experiência do cliente e gerar novas oportunidades.
+          </p>
         </div>
 
-        {/* 6 Cards Grid (2 Linhas de 3 Cards) */}
-        {isLoading && featuredProjects.length === 0 ? (
-          <div className="py-20 text-center text-slate-400">
-            Carregando projetos em destaque...
+        {/* Grid de 6 Projetos */}
+        {error && featuredProjects.length === 0 ? (
+          <div className="py-12 px-6 rounded-2xl bg-[#0a0f1d]/80 border border-red-500/20 max-w-md mx-auto text-center my-6">
+            <AlertCircle className="w-8 h-8 text-red-400 mx-auto mb-3 opacity-90" />
+            <p className="text-sm font-medium text-slate-200 mb-1">
+              Não foi possível carregar os projetos em destaque.
+            </p>
+            <p className="text-xs text-slate-400 mb-4">
+              {error}
+            </p>
+            <button
+              type="button"
+              onClick={() => refetch()}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-md shadow-blue-600/20 cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Tentar novamente</span>
+            </button>
+          </div>
+        ) : isLoading && featuredProjects.length === 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <ProjectCardSkeleton key={`skeleton-featured-${i}`} variant="featured" />
+            ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {featuredProjects.map((project: Project, index: number) => {
-              const config = getCardConfig(project.slug, index);
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 animate-fadeIn">
+            {featuredProjects.slice(0, 6).map((project) => {
+              const config = getCardConfig(project.slug, project);
+              const targetUrl = project.liveUrl || (project as any).url;
 
               return (
                 <div
                   key={project.id}
                   id={`project-card-${project.slug}`}
-                  onClick={() => onSelectProject(project.slug)}
+                  onClick={() => {
+                    if (targetUrl) {
+                      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+                    }
+                  }}
                   className={`group relative bg-[#060a16]/90 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between cursor-pointer ${config.cardBorderClass}`}
                 >
                   <div>
@@ -219,14 +238,34 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
                       <div className="absolute inset-0 bg-gradient-to-t from-[#060a16]/70 via-transparent to-transparent pointer-events-none" />
 
                       {/* Pill da Categoria no topo esquerdo da imagem */}
-                      <div className="absolute top-3 left-3">
+                      <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
                         <span
                           className={`px-2.5 py-1 rounded-full backdrop-blur-md border text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5 ${config.categoryBadgeClass}`}
                         >
                           {config.categoryIcon}
                           <span>{config.categoryLabel}</span>
                         </span>
+
+                        {config.isProfessional && (
+                          <span className="px-2 py-0.5 rounded-full bg-slate-900/90 backdrop-blur-md border border-slate-700 text-[9px] font-semibold text-slate-300 uppercase tracking-wider">
+                            Experiência Profissional
+                          </span>
+                        )}
                       </div>
+
+                      {/* External Link Icon flutuante no topo direito */}
+                      {targetUrl && (
+                        <a
+                          href={targetUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Acessar site de ${project.name}`}
+                          className="absolute top-3 right-3 p-1.5 rounded-lg bg-black/60 hover:bg-blue-600/90 backdrop-blur-md border border-white/10 text-slate-300 hover:text-white transition-all cursor-pointer shadow-md"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
                     </div>
 
                     {/* Título do Projeto */}
@@ -238,12 +277,9 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
                     <p className="text-xs sm:text-[13px] text-slate-400 leading-relaxed mb-4 min-h-[38px] line-clamp-2">
                       {project.shortDescription}
                     </p>
-                  </div>
 
-                  {/* Rodapé do Card: Tech Stack Pills + 'Ver projeto ->' */}
-                  <div className="pt-4 border-t border-slate-800/60 flex items-center justify-between gap-2">
-                    {/* Tags Tecnológicas */}
-                    <div className="flex flex-wrap items-center gap-1.5">
+                    {/* Tech Stack Pills */}
+                    <div className="flex flex-wrap items-center gap-1.5 mb-4">
                       {config.techs.map((tech) => (
                         <span
                           key={tech}
@@ -254,16 +290,45 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
                         </span>
                       ))}
                     </div>
+                  </div>
 
-                    {/* Link 'Ver projeto ->' */}
-                    <span className="text-xs font-semibold text-[#38bdf8] group-hover:text-white flex items-center gap-1 shrink-0 transition-colors">
-                      <span>Ver projeto</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </span>
+                  {/* Rodapé do Card: Botão Principal 'Visitar site →' */}
+                  <div className="pt-4 border-t border-slate-800/60">
+                    {targetUrl ? (
+                      <a
+                        href={targetUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 group/btn"
+                      >
+                        <span>Visitar site</span>
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                        <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                      </a>
+                    ) : (
+                      <div className="w-full py-2.5 px-4 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-400 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2">
+                        <span>Em breve</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               );
             })}
+          </div>
+        )}
+
+        {/* Botão Ver todos os projetos */}
+        {onViewAllProjects && (
+          <div className="mt-10 sm:mt-12 flex justify-center">
+            <button
+              type="button"
+              onClick={onViewAllProjects}
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#0a1122] hover:bg-[#0f1b36] border border-slate-700/80 hover:border-[#38bdf8]/60 text-sm font-semibold text-white hover:text-[#38bdf8] shadow-lg shadow-black/40 hover:shadow-[#38bdf8]/10 transition-all duration-300 cursor-pointer group"
+            >
+              <span>Ver todos os projetos</span>
+              <ArrowRight className="w-4 h-4 text-[#38bdf8] group-hover:translate-x-1 transition-transform" />
+            </button>
           </div>
         )}
 
@@ -310,4 +375,3 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
     </section>
   );
 };
-

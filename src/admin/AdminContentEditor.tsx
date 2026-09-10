@@ -412,10 +412,10 @@ export const AdminContentEditor: React.FC = () => {
           </div>
 
           {/* Métricas estatísticas */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
             <div>
               <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                Experiência
+                Anos em Tecnologia
               </label>
               <input
                 type="text"
@@ -427,7 +427,7 @@ export const AdminContentEditor: React.FC = () => {
 
             <div>
               <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                Projetos
+                Projetos Entregues
               </label>
               <input
                 type="text"
@@ -439,24 +439,12 @@ export const AdminContentEditor: React.FC = () => {
 
             <div>
               <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                Segmentos
+                Segmentos Atendidos
               </label>
               <input
                 type="text"
                 value={about.segmentsCount}
                 onChange={(e) => setAbout({ ...about, segmentsCount: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white font-bold"
-              />
-            </div>
-
-            <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1">
-                Foco
-              </label>
-              <input
-                type="text"
-                value={about.focusText}
-                onChange={(e) => setAbout({ ...about, focusText: e.target.value })}
                 className="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-lg text-xs text-white font-bold"
               />
             </div>
