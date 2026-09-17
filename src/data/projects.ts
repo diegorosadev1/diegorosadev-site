@@ -224,76 +224,100 @@ export const PROJECTS: Project[] = [
     ],
   },
 
-  // 4. AVANCE MOTORS
-  {
-    id: 'avance-motors',
-    slug: 'avance-motors',
-    name: 'Avance Motors',
-    segment: 'Website',
-    category: 'Website',
-    shortDescription: 'Website automotivo desenvolvido para apresentar a loja, seus veículos e facilitar a jornada do visitante até o atendimento.',
-    heroSummary: 'Website automotivo desenvolvido para apresentar a loja, seus veículos e facilitar a jornada do visitante até o atendimento.',
-    image: '/images/avance-motors.jpg',
-    thumbnailUrl: '/images/avance-motors.jpg',
-    heroDesktopUrl: '/images/avance-motors.jpg',
-    heroMobileUrl: '/images/avance-motors.jpg',
-    logo: 'car-front',
-    liveUrl: 'https://avancemotors.com.br/',
-    status: 'published',
-    published: true,
-    featured: true,
-    displayOrder: 4,
-    techStack: [
-      { name: 'React', subtitle: 'Frontend' },
-      { name: 'TypeScript', subtitle: 'Tipagem robusta' },
-      { name: 'Tailwind', subtitle: 'Design responsivo' },
-      { name: 'Vite', subtitle: 'Performance' },
-    ],
-    context: {
-      title: 'Presença online e jornada simplificada até a negociação',
-      description: 'Website automotivo desenvolvido para apresentar a loja, seus veículos e facilitar a jornada do visitante até o atendimento.',
-      image: '/images/avance-motors.jpg',
-    },
-    problems: [
-      'Apresentação dos veículos sem padronização visual',
-      'Lentidão no carregamento de fotos do estoque',
-      'Distanciamento entre a navegação no site e o primeiro contato comercial',
-    ],
-    solutions: [
-      'Showroom digital moderno com fotos de alta qualidade e carregamento leve',
-      'Estrutura clara para visualização de especificações de cada veículo',
-      'Integração direta com canais de atendimento para aceleração das vendas',
-    ],
-    features: [
-      {
-        title: 'Apresentação da loja e estoque',
-        description: 'Vitrine digital moderna para valorizar os modelos e a identidade da loja.',
-        iconName: 'Car',
-      },
-      {
-        title: 'Páginas de veículos',
-        description: 'Fotos e dados detalhados para orientar a decisão do cliente.',
-        iconName: 'Layers',
-      },
-      {
-        title: 'Direcionamento para atendimento',
-        description: 'Botões contextuais para contato direto com a equipe comercial.',
-        iconName: 'Clock',
-      },
-      {
-        title: 'Layout moderno e responsivo',
-        description: 'Experiência fluida e consistente em qualquer tamanho de tela.',
-        iconName: 'Smartphone',
-      },
-    ],
-    results: [],
-    technologies: [
-      { name: 'React', subtitle: 'Frontend' },
-      { name: 'TypeScript', subtitle: 'Segurança de tipos' },
-      { name: 'Tailwind CSS', subtitle: 'Estilização utilitária' },
-      { name: 'Vite', subtitle: 'Build' },
-    ],
+// 4. CLIFF CONSÓRCIOS
+{
+  id: 'cliff-consorcios',
+  slug: 'cliff-consorcios',
+  name: 'Cliff Consórcios',
+  segment: 'Website',
+  category: 'Website',
+
+  shortDescription:
+    'Landing page desenvolvida para posicionar a Cliff Consórcios no digital e transformar visitantes em oportunidades de consultoria.',
+
+  heroSummary:
+    'Landing page desenvolvida para apresentar a Cliff Consórcios, fortalecer sua autoridade e conduzir potenciais clientes até o contato comercial.',
+
+  image: '/images/cliffconsorcios.png',
+  thumbnailUrl: '/images/cliffconsorcios.png',
+  heroDesktopUrl: '/images/cliffconsorcios.png',
+  heroMobileUrl: '/images/cliffconsorcios.png',
+
+  logo: 'landmark',
+
+  liveUrl: 'https://cliffconsorcios.com.br/',
+
+  status: 'published',
+  published: true,
+  featured: true,
+  displayOrder: 4,
+
+  techStack: [
+    { name: 'React', subtitle: 'Frontend' },
+    { name: 'TypeScript', subtitle: 'Tipagem robusta' },
+    { name: 'Tailwind', subtitle: 'Design responsivo' },
+    { name: 'Vite', subtitle: 'Performance' },
+  ],
+
+  context: {
+    title: 'Autoridade digital para transformar interesse em oportunidades',
+
+    description:
+      'Landing page desenvolvida para apresentar a Cliff Consórcios de forma estratégica, comunicar sua proposta de valor e conduzir o visitante até o contato comercial.',
+
+    image: '/images/cliffconsorcios.png',
   },
+
+  problems: [
+    'Necessidade de fortalecer a presença digital da consultoria',
+    'Apresentação pouco estruturada da proposta de valor e dos serviços',
+    'Necessidade de transformar visitantes em oportunidades de atendimento',
+  ],
+
+  solutions: [
+    'Landing page premium com identidade visual alinhada ao posicionamento da marca',
+    'Estrutura de conteúdo focada em autoridade, confiança e clareza na comunicação',
+    'CTAs estratégicos direcionando o visitante para a consultoria',
+  ],
+
+  features: [
+    {
+      title: 'Posicionamento digital',
+      description:
+        'Página desenvolvida para transmitir autoridade e profissionalismo no mercado de consórcios.',
+      iconName: 'Landmark',
+    },
+    {
+      title: 'Apresentação estratégica',
+      description:
+        'Estrutura de conteúdo organizada para apresentar a proposta e os diferenciais da consultoria.',
+      iconName: 'Target',
+    },
+    {
+      title: 'Conversão para atendimento',
+      description:
+        'Chamadas estratégicas para facilitar a transição do visitante para o contato comercial.',
+      iconName: 'MessageCircle',
+    },
+    {
+      title: 'Experiência responsiva',
+      description:
+        'Interface adaptada para proporcionar uma experiência consistente em desktop e dispositivos móveis.',
+      iconName: 'Smartphone',
+    },
+  ],
+
+  results: [],
+
+  technologies: [
+    { name: 'React', subtitle: 'Frontend' },
+    { name: 'TypeScript', subtitle: 'Segurança de tipos' },
+    { name: 'Tailwind CSS', subtitle: 'Estilização' },
+    { name: 'Vite', subtitle: 'Build' },
+  ],
+},
+
+// 5. PRÓXIMO PROJETO
 
   // 5. TEAM BG CONSULTORIA
   {
