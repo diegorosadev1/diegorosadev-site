@@ -147,7 +147,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1.5 text-center sm:text-right">
             <span>&copy; {new Date().getFullYear()} Diego Rosa. Todos os direitos reservados.</span>
             <span className="text-slate-700">•</span>
-            <span className="text-slate-400 font-medium">CNPJ: 59.938.744/0001-02</span>
             <span className="text-slate-700">•</span>
             <button
               onClick={() => onNavigate('/admin')}
