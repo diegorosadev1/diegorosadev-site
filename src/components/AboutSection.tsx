@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { WHATSAPP_URL } from '../data/servicesAndProcess';
 import { SiteAboutContent } from '../types';
+import Profile from '../../public/images/T9lWx.jpg'
 
 interface AboutSectionProps {
   content?: SiteAboutContent;
@@ -81,7 +82,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ content }) => {
                   }}
                 >
                   <img
-                    src={"https://media.licdn.com/dms/image/v2/D4D03AQGkog7BTbBiGw/profile-displayphoto-scale_400_400/B4DZ5bQwCBHAAg-/0/1779647580925?e=1790812800&v=beta&t=KMlLiAGXMkJrqVDN8vIcbCeW0a7-M2gfTJFXKlNZoFU"}
+                    src={Profile}
                     alt="Diego Rosa - Engenheiro de Software"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
